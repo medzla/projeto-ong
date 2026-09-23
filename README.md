@@ -11,16 +11,19 @@
 
 ---
 
-## 📌 Visão Geral & Contextualização no Terceiro Setor
+## 📖 Contexto
 
-As Organizações da Sociedade Civil (OSCs / ONGs) desempenham um papel vital na redução de desigualdades e na regeneração ecológica. Esta plataforma foi concebida para atender às três necessidades centrais do terceiro setor contemporâneo:
-1. **Transparência e Credibilidade**: Apresentação clara de missões, resultados auditáveis e prestação de contas com métricas em tempo real.
-2. **Engajamento e Mobilização Comunitária**: Galeria dinâmica de projetos sociais com categorização interativa e chamadas de ação para voluntários.
-3. **Captação de Recursos Sustentável**: Simulador de doações com cálculo de impacto estimado e integração de chave PIX de 1 clique.
+> As organizações do terceiro setor frequentemente lidam com recursos limitados e dependem enormemente do engajamento de voluntários e da captação de doações. A falta de uma plataforma digital clara, acessível e bem estruturada pode comprometer severamente a credibilidade institucional e dificultar a navegação dos apoiadores. O uso apropriado da semântica na linguagem HTML5 não é apenas uma boa prática de programação, mas um requisito essencial para garantir a correta indexação nos motores de busca (SEO) e fornecer um nível adequado de acessibilidade digital para todos os usuários.
 
 ---
 
-## 🎯 As Três Etapas da Experiência Prática
+## 🚩 Desafio
+
+> Projetar e desenvolver um conjunto de páginas *web* utilizando o padrão HTML5 semântico, assegurando uma arquitetura de informação coerente e organizada em diretórios estruturados: uma página inicial (`index.html`) apresentando a ONG, uma página sobre iniciativas solidárias (`projetos.html`) e uma página de engajamento (`cadastro.html`). O grande destaque do desafio será implementar, nesta última, um formulário interativo completo contendo validações nativas e máscaras de entrada rigorosas (CPF, Telefone, CEP) para assegurar o registro íntegro de futuros colaboradores.
+
+---
+
+## 🎯 Atendimento Rigoroso ao Desafio (Etapas Práticas)
 
 O projeto foi rigorosamente estruturado atendendo aos requisitos técnicos do itinerário prático:
 
