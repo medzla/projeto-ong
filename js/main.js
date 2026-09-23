@@ -1,6 +1,6 @@
 /**
  * Script Principal - Instituto Esperança Viva
- * Controle de Tema (Dark/Light), Menu Mobile, Toast e Contadores Animados
+ * Controle de Tema (Dark/Light), Menu Mobile com Morphing, Modais Acessíveis e Toasts
  */
 
 // --------------------------------------------------------------------------
@@ -11,13 +11,17 @@ function showToast(title, message, type = 'success') {
   if (!toastContainer) {
     toastContainer = document.createElement('div');
     toastContainer.className = 'toast-container';
+    toastContainer.setAttribute('role', 'region');
+    toastContainer.setAttribute('aria-label', 'Notificações do sistema');
     document.body.appendChild(toastContainer);
   }
 
   const toast = document.createElement('div');
   toast.className = `toast ${type}`;
+  toast.setAttribute('role', 'status');
+  toast.setAttribute('aria-live', 'polite');
   toast.innerHTML = `
-    <div class="toast-icon">${type === 'success' ? '✓' : '⚠'}</div>
+    <div class="toast-icon" aria-hidden="true">${type === 'success' ? '✓' : '⚠'}</div>
     <div class="toast-content">
       <h5>${title}</h5>
       <p>${message}</p>
@@ -26,7 +30,7 @@ function showToast(title, message, type = 'success') {
 
   toastContainer.appendChild(toast);
 
-  // Animar entrada
+  // Animar entrada suave
   requestAnimationFrame(() => {
     toast.classList.add('show');
   });
@@ -41,7 +45,46 @@ function showToast(title, message, type = 'success') {
 }
 
 // --------------------------------------------------------------------------
-// 2. Inicialização DOM
+// 2. Controlador de Modais Acessíveis (WCAG Compliant)
+// --------------------------------------------------------------------------
+function openModal(modalId) {
+  const modal = document.getElementById(modalId);
+  if (!modal) return;
+  
+  modal.classList.add('active');
+  modal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+
+  // Foco no botão de fechar para leitores de tela
+  const closeBtn = modal.querySelector('.modal-close-btn');
+  if (closeBtn) closeBtn.focus();
+}
+
+function closeModal(modalId) {
+  const modal = document.getElementById(modalId);
+  if (!modal) return;
+
+  modal.classList.remove('active');
+  modal.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+
+// Fechamento de modal com tecla Escape ou clique fora
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    const activeModals = document.querySelectorAll('.modal-overlay.active');
+    activeModals.forEach(m => closeModal(m.id));
+  }
+});
+
+document.addEventListener('click', (e) => {
+  if (e.target.classList.contains('modal-overlay')) {
+    closeModal(e.target.id);
+  }
+});
+
+// --------------------------------------------------------------------------
+// 3. Inicialização DOM
 // --------------------------------------------------------------------------
 document.addEventListener('DOMContentLoaded', () => {
   // --- Alternador de Tema Claro / Escuro ---
@@ -65,19 +108,41 @@ document.addEventListener('DOMContentLoaded', () => {
       document.documentElement.setAttribute('data-theme', newTheme);
       localStorage.setItem('ong_theme', newTheme);
       themeToggleBtn.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+      showToast('Tema Atualizado', `Modo ${newTheme === 'dark' ? 'escuro' : 'claro'} ativado.`, 'success');
     });
   }
 
-  // --- Menu Mobile Drawer ---
+  // --- Menu Mobile Drawer com Morphing Hamburger & Backdrop ---
   const mobileMenuBtn = document.getElementById('mobileMenuBtn');
   const mainNav = document.getElementById('mainNav');
+  
+  // Criar ou obter backdrop dinamicamente
+  let navBackdrop = document.querySelector('.nav-backdrop');
+  if (!navBackdrop) {
+    navBackdrop = document.createElement('div');
+    navBackdrop.className = 'nav-backdrop';
+    document.body.appendChild(navBackdrop);
+  }
+
+  const toggleMobileNav = () => {
+    const isOpen = mainNav.classList.toggle('open');
+    mobileMenuBtn.classList.toggle('is-active', isOpen);
+    navBackdrop.classList.toggle('show', isOpen);
+    mobileMenuBtn.setAttribute('aria-expanded', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  };
 
   if (mobileMenuBtn && mainNav) {
-    mobileMenuBtn.addEventListener('click', () => {
-      mainNav.classList.toggle('open');
-      const isOpen = mainNav.classList.contains('open');
-      mobileMenuBtn.setAttribute('aria-expanded', isOpen);
-      mobileMenuBtn.textContent = isOpen ? '✕' : '☰';
+    mobileMenuBtn.addEventListener('click', toggleMobileNav);
+    navBackdrop.addEventListener('click', toggleMobileNav);
+
+    // Fechar ao clicar em qualquer link
+    mainNav.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        if (mainNav.classList.contains('open')) {
+          toggleMobileNav();
+        }
+      });
     });
   }
 

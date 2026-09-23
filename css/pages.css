@@ -912,8 +912,146 @@
   color: var(--text-main);
 }
 
-.file-upload-hint {
+/* --------------------------------------------------------------------------
+   Custom Range Slider Thumb & Shimmer
+   -------------------------------------------------------------------------- */
+.form-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--primary);
+  cursor: pointer;
+  border: 3px solid #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+.form-range::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  background: var(--primary-hover);
+}
+
+.form-range::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--primary);
+  cursor: pointer;
+  border: 3px solid #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+/* Shimmer animado para barra de progresso */
+.progress-bar-fill {
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-bar-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+  animation: shimmerProgress 2.5s infinite;
+}
+
+@keyframes shimmerProgress {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Indicador de Seleção nos Cards de Área de Atuação */
+.interest-custom-card {
+  position: relative;
+}
+
+.interest-checkbox-label input:checked + .interest-custom-card::after {
+  content: '✓';
+  position: absolute;
+  top: 0.65rem;
+  right: 0.65rem;
+  width: 1.35rem;
+  height: 1.35rem;
+  border-radius: 50%;
+  background-color: var(--primary);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 800;
+  box-shadow: 0 2px 6px rgba(5, 150, 105, 0.35);
+  animation: popCheck 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes popCheck {
+  0% { transform: scale(0); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* --------------------------------------------------------------------------
+   PIX QR Code Simulator & Detalhes do Projeto no Modal
+   -------------------------------------------------------------------------- */
+.pix-qr-box {
+  background: #ffffff;
+  border: 2px dashed var(--primary);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.qr-code-graphic {
+  width: 180px;
+  height: 180px;
+  background: repeating-linear-gradient(0deg, #111, #111 6px, #fff 6px, #fff 12px),
+              repeating-linear-gradient(90deg, #111, #111 6px, #fff 6px, #fff 12px);
+  background-blend-mode: difference;
+  border: 6px solid #111;
+  border-radius: var(--radius-xs);
+  position: relative;
+}
+
+.modal-project-img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  margin-bottom: 1rem;
+}
+
+.modal-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.modal-stat-box {
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem;
+  text-align: center;
+}
+
+.modal-stat-box strong {
+  display: block;
+  font-size: 1.15rem;
+  color: var(--primary);
+  font-family: var(--font-heading);
+}
+
+.modal-stat-box span {
   font-size: 0.75rem;
   color: var(--text-muted);
 }
+
 

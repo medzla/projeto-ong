@@ -51,7 +51,11 @@
       <div class="header-actions">
         <button type="button" class="theme-toggle-btn" id="themeToggle" aria-label="Alternar tema claro e escuro">🌙</button>
         <a href="cadastro.html" class="btn btn-primary btn-sm">Quero Ajudar</a>
-        <button type="button" class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menu de navegação" aria-expanded="false">☰</button>
+        <button type="button" class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menu de navegação" aria-expanded="false">
+          <span class="hamburger-bar" aria-hidden="true"></span>
+          <span class="hamburger-bar" aria-hidden="true"></span>
+          <span class="hamburger-bar" aria-hidden="true"></span>
+        </button>
       </div>
     </div>
   </header>
@@ -231,7 +235,7 @@
               </div>
 
               <div class="project-footer">
-                <a href="projetos.html" class="btn btn-secondary btn-sm">Ver Detalhes</a>
+                <button type="button" class="btn btn-secondary btn-sm btn-details">Ver Detalhes</button>
                 <a href="cadastro.html" class="btn btn-primary btn-sm">Voluntariar</a>
               </div>
             </div>
@@ -240,7 +244,7 @@
           <!-- Card 2: Meio Ambiente -->
           <article class="project-card" data-category="ambiente">
             <div class="project-thumb">
-              <span class="badge badge-success project-badge-status">Em Andamento</span>
+              <span class="badge badge-success project-badge-status"><span class="pulse-dot"></span> Em Andamento</span>
               <span class="project-category-tag">Meio Ambiente</span>
               <img src="assets/images/project-meio-ambiente.jpg" alt="Voluntários plantando mudas de árvores em encosta" loading="lazy">
             </div>
@@ -259,7 +263,7 @@
               </div>
 
               <div class="project-footer">
-                <a href="projetos.html" class="btn btn-secondary btn-sm">Ver Detalhes</a>
+                <button type="button" class="btn btn-secondary btn-sm btn-details">Ver Detalhes</button>
                 <a href="cadastro.html" class="btn btn-primary btn-sm">Voluntariar</a>
               </div>
             </div>
@@ -268,7 +272,7 @@
           <!-- Card 3: Tecnologia & Inclusão -->
           <article class="project-card" data-category="tecnologia">
             <div class="project-thumb">
-              <span class="badge badge-accent project-badge-status">Inscrições Abertas</span>
+              <span class="badge badge-accent project-badge-status"><span class="pulse-dot"></span> Inscrições Abertas</span>
               <span class="project-category-tag">Capacitação Jovem</span>
               <img src="assets/images/project-tecnologia.jpg" alt="Jovens em laboratório de informática aprendendo código" loading="lazy">
             </div>
@@ -287,7 +291,7 @@
               </div>
 
               <div class="project-footer">
-                <a href="projetos.html" class="btn btn-secondary btn-sm">Ver Detalhes</a>
+                <button type="button" class="btn btn-secondary btn-sm btn-details">Ver Detalhes</button>
                 <a href="cadastro.html" class="btn btn-primary btn-sm">Voluntariar</a>
               </div>
             </div>
@@ -345,7 +349,10 @@
               <span style="font-size: 0.8rem; color: var(--text-muted); display: block;">Chave PIX Oficial (E-mail / CNPJ):</span>
               <strong style="font-family: monospace; font-size: 1rem; color: var(--text-main);">contato@institutoesperancaviva.org.br</strong>
             </div>
-            <button type="button" class="btn btn-primary" id="copyPixBtn">📋 Copiar Chave PIX</button>
+            <div style="display: flex; gap: 0.75rem;">
+              <button type="button" class="btn btn-secondary" id="openPixModalBtn">📱 Ver QR Code PIX</button>
+              <button type="button" class="btn btn-primary copy-pix-btn" id="copyPixBtn">📋 Copiar Chave PIX</button>
+            </div>
           </div>
         </div>
       </div>
@@ -427,6 +434,75 @@
       </div>
     </div>
   </footer>
+
+  <!-- =========================================================================
+       Modais Acessíveis (WCAG Compliant)
+       ========================================================================= -->
+  <!-- Modal 1: Detalhes do Projeto -->
+  <div class="modal-overlay" id="projectDetailModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modalProjectTitle">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modalProjectTitle">Dossiê do Projeto Social</h3>
+        <button type="button" class="modal-close-btn" onclick="closeModal('projectDetailModal')" aria-label="Fechar janela">✕</button>
+      </div>
+      <div class="modal-body">
+        <img id="modalProjectImg" src="assets/images/project-educacao.jpg" alt="Foto da iniciativa" class="modal-project-img">
+        <p id="modalProjectDesc" style="color: var(--text-main); font-size: 1rem;"></p>
+        
+        <div class="modal-stats-grid">
+          <div class="modal-stat-box">
+            <strong id="modalProjectGoal">78%</strong>
+            <span>Meta em Andamento</span>
+          </div>
+          <div class="modal-stat-box">
+            <strong id="modalProjectVolunteers">42</strong>
+            <span>Equipe Ativa</span>
+          </div>
+          <div class="modal-stat-box">
+            <strong id="modalProjectLocation">Polo Regional</strong>
+            <span>Local de Atuação</span>
+          </div>
+        </div>
+
+        <div style="background-color: var(--primary-light); padding: 1.25rem; border-radius: var(--radius-sm); border: 1px solid var(--primary);">
+          <strong style="color: var(--primary); display: block; margin-bottom: 0.35rem; font-size: 0.95rem;">Impacto Comunitário Mensurável:</strong>
+          <p id="modalProjectImpact" style="font-size: 0.875rem; margin: 0; color: var(--text-main); line-height: 1.5;"></p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" onclick="closeModal('projectDetailModal')">Fechar</button>
+        <a href="cadastro.html" class="btn btn-primary btn-sm">Quero Ser Voluntário Neste Projeto</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 2: QR Code PIX Instantâneo -->
+  <div class="modal-overlay" id="pixModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="pixModalTitle">
+    <div class="modal-dialog" style="max-width: 480px;">
+      <div class="modal-header">
+        <h3 class="modal-title" id="pixModalTitle">Doação Instantânea via PIX</h3>
+        <button type="button" class="modal-close-btn" onclick="closeModal('pixModal')" aria-label="Fechar janela">✕</button>
+      </div>
+      <div class="modal-body" style="text-align: center;">
+        <span class="badge badge-primary">Valor Selecionado: <span id="pixModalAmount">R$ 20,00</span></span>
+        <p style="font-size: 0.9rem; margin-top: 0.5rem;">Abra o app do seu banco, escolha <strong>Pagar via PIX</strong> e aponte a câmera para o QR Code abaixo:</p>
+        
+        <div class="pix-qr-box">
+          <div class="qr-code-graphic" aria-label="Simulador de QR Code PIX"></div>
+          <span style="font-size: 0.75rem; color: var(--text-muted);">QR Code gerado para transferência imediata</span>
+        </div>
+
+        <div style="background-color: var(--bg-subtle); padding: 0.85rem; border-radius: var(--radius-sm); border: 1px solid var(--border); font-size: 0.85rem; word-break: break-all;">
+          <strong>Chave Oficial (E-mail):</strong><br>
+          <span style="color: var(--primary); font-family: monospace; font-weight: 700;">contato@institutoesperancaviva.org.br</span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" onclick="closeModal('pixModal')">Fechar</button>
+        <button type="button" class="btn btn-primary btn-sm copy-pix-btn">Copiar Chave</button>
+      </div>
+    </div>
+  </div>
 
   <!-- Scripts -->
   <script src="js/main.js"></script>

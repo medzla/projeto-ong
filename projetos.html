@@ -47,7 +47,11 @@
       <div class="header-actions">
         <button type="button" class="theme-toggle-btn" id="themeToggle" aria-label="Alternar tema claro e escuro">🌙</button>
         <a href="cadastro.html" class="btn btn-primary btn-sm">Quero Ajudar</a>
-        <button type="button" class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menu de navegação" aria-expanded="false">☰</button>
+        <button type="button" class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menu de navegação" aria-expanded="false">
+          <span class="hamburger-bar" aria-hidden="true"></span>
+          <span class="hamburger-bar" aria-hidden="true"></span>
+          <span class="hamburger-bar" aria-hidden="true"></span>
+        </button>
       </div>
     </div>
   </header>
@@ -108,7 +112,7 @@
               </div>
 
               <div class="project-footer">
-                <span style="font-size: 0.8rem; color: var(--text-muted);">📍 Zona Leste e Sul</span>
+                <button type="button" class="btn btn-secondary btn-sm btn-details">Ver Detalhes</button>
                 <a href="cadastro.html" class="btn btn-primary btn-sm">Seja Voluntário</a>
               </div>
             </div>
@@ -117,7 +121,7 @@
           <!-- Projeto 2: Meio Ambiente -->
           <article class="project-card" data-category="ambiente">
             <div class="project-thumb">
-              <span class="badge badge-success project-badge-status">Em Andamento</span>
+              <span class="badge badge-success project-badge-status"><span class="pulse-dot"></span> Em Andamento</span>
               <span class="project-category-tag">Preservação Ambiental</span>
               <img src="assets/images/project-meio-ambiente.jpg" alt="Equipe plantando mudas nativas em área reflorestada" loading="lazy">
             </div>
@@ -138,7 +142,7 @@
               </div>
 
               <div class="project-footer">
-                <span style="font-size: 0.8rem; color: var(--text-muted);">📍 Bacia Hidrográfica</span>
+                <button type="button" class="btn btn-secondary btn-sm btn-details">Ver Detalhes</button>
                 <a href="cadastro.html" class="btn btn-primary btn-sm">Seja Voluntário</a>
               </div>
             </div>
@@ -147,7 +151,7 @@
           <!-- Projeto 3: Tecnologia -->
           <article class="project-card" data-category="tecnologia">
             <div class="project-thumb">
-              <span class="badge badge-accent project-badge-status">Novas Vagas</span>
+              <span class="badge badge-accent project-badge-status"><span class="pulse-dot"></span> Novas Vagas</span>
               <span class="project-category-tag">Capacitação Jovem</span>
               <img src="assets/images/project-tecnologia.jpg" alt="Jovens aprendendo desenvolvimento de software no laboratório tech" loading="lazy">
             </div>
@@ -168,7 +172,7 @@
               </div>
 
               <div class="project-footer">
-                <span style="font-size: 0.8rem; color: var(--text-muted);">📍 Hub Comunitário</span>
+                <button type="button" class="btn btn-secondary btn-sm btn-details">Ver Detalhes</button>
                 <a href="cadastro.html" class="btn btn-primary btn-sm">Seja Voluntário</a>
               </div>
             </div>
@@ -177,7 +181,7 @@
           <!-- Projeto 4: Comunidade -->
           <article class="project-card" data-category="comunidade">
             <div class="project-thumb">
-              <span class="badge badge-success project-badge-status">Em Andamento</span>
+              <span class="badge badge-success project-badge-status"><span class="pulse-dot"></span> Em Andamento</span>
               <span class="project-category-tag">Segurança Alimentar</span>
               <img src="assets/images/hero.jpg" alt="Colheita de horta comunitária agroecológica" loading="lazy">
             </div>
@@ -198,7 +202,7 @@
               </div>
 
               <div class="project-footer">
-                <span style="font-size: 0.8rem; color: var(--text-muted);">📍 Bairros Periféricos</span>
+                <button type="button" class="btn btn-secondary btn-sm btn-details">Ver Detalhes</button>
                 <a href="cadastro.html" class="btn btn-primary btn-sm">Seja Voluntário</a>
               </div>
             </div>
@@ -207,7 +211,7 @@
           <!-- Projeto 5: Educação & Artes -->
           <article class="project-card" data-category="educacao">
             <div class="project-thumb">
-              <span class="badge badge-success project-badge-status">Em Andamento</span>
+              <span class="badge badge-success project-badge-status"><span class="pulse-dot"></span> Em Andamento</span>
               <span class="project-category-tag">Arte & Cidadania</span>
               <img src="assets/images/project-educacao.jpg" alt="Oficinas de música e teatro com crianças" loading="lazy">
             </div>
@@ -228,7 +232,7 @@
               </div>
 
               <div class="project-footer">
-                <span style="font-size: 0.8rem; color: var(--text-muted);">📍 Centro Cultural</span>
+                <button type="button" class="btn btn-secondary btn-sm btn-details">Ver Detalhes</button>
                 <a href="cadastro.html" class="btn btn-primary btn-sm">Seja Voluntário</a>
               </div>
             </div>
@@ -237,7 +241,7 @@
           <!-- Projeto 6: Meio Ambiente -->
           <article class="project-card" data-category="ambiente">
             <div class="project-thumb">
-              <span class="badge badge-secondary project-badge-status">Expansão</span>
+              <span class="badge badge-secondary project-badge-status"><span class="pulse-dot"></span> Expansão</span>
               <span class="project-category-tag">Economia Circular</span>
               <img src="assets/images/project-meio-ambiente.jpg" alt="Pontos de coleta e reciclagem comunitária" loading="lazy">
             </div>
@@ -258,7 +262,7 @@
               </div>
 
               <div class="project-footer">
-                <span style="font-size: 0.8rem; color: var(--text-muted);">📍 Cooperativa Central</span>
+                <button type="button" class="btn btn-secondary btn-sm btn-details">Ver Detalhes</button>
                 <a href="cadastro.html" class="btn btn-primary btn-sm">Seja Voluntário</a>
               </div>
             </div>
@@ -346,6 +350,46 @@
       </div>
     </div>
   </footer>
+
+  <!-- =========================================================================
+       Modal de Detalhes do Projeto (Acessível)
+       ========================================================================= -->
+  <div class="modal-overlay" id="projectDetailModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modalProjectTitle">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modalProjectTitle">Dossiê do Projeto Social</h3>
+        <button type="button" class="modal-close-btn" onclick="closeModal('projectDetailModal')" aria-label="Fechar janela">✕</button>
+      </div>
+      <div class="modal-body">
+        <img id="modalProjectImg" src="assets/images/project-educacao.jpg" alt="Foto da iniciativa" class="modal-project-img">
+        <p id="modalProjectDesc" style="color: var(--text-main); font-size: 1rem;"></p>
+        
+        <div class="modal-stats-grid">
+          <div class="modal-stat-box">
+            <strong id="modalProjectGoal">78%</strong>
+            <span>Meta em Andamento</span>
+          </div>
+          <div class="modal-stat-box">
+            <strong id="modalProjectVolunteers">42</strong>
+            <span>Equipe Ativa</span>
+          </div>
+          <div class="modal-stat-box">
+            <strong id="modalProjectLocation">Polo Regional</strong>
+            <span>Local de Atuação</span>
+          </div>
+        </div>
+
+        <div style="background-color: var(--primary-light); padding: 1.25rem; border-radius: var(--radius-sm); border: 1px solid var(--primary);">
+          <strong style="color: var(--primary); display: block; margin-bottom: 0.35rem; font-size: 0.95rem;">Impacto Comunitário Mensurável:</strong>
+          <p id="modalProjectImpact" style="font-size: 0.875rem; margin: 0; color: var(--text-main); line-height: 1.5;"></p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" onclick="closeModal('projectDetailModal')">Fechar</button>
+        <a href="cadastro.html" class="btn btn-primary btn-sm">Quero Ser Voluntário Neste Projeto</a>
+      </div>
+    </div>
+  </div>
 
   <!-- Scripts -->
   <script src="js/main.js"></script>

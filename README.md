@@ -99,19 +99,58 @@ Faculdade Projetos/ONG/
 
 ---
 
+## 🎨 Design System e Estruturação CSS3 Avançada
+
+O projeto utiliza o estado da arte do **CSS3 puro (Vanilla CSS)**, combinando técnicas de engenharia de software com design visual moderno:
+
+### 1. Sistema de Design Tokens Consistente
+* **Paleta Semântica**: Tokens primários (`--primary`, `--primary-light`, `--primary-dark`), secundários (`--secondary`), de destaque (`--accent`) e neutros equilibrados para os modos claro e escuro.
+* **Escala de Espaçamento Modular**: De `--space-1` (4px) até `--space-20` (80px), garantindo ritmo vertical e horizontal harmônico.
+* **Escala de Elevação & Z-Index**: 5 níveis de sombras com luz ambiente (`--shadow-sm` a `--shadow-xl`) e gerenciamento hierárquico estrito de camadas (`--z-dropdown`, `--z-sticky`, `--z-drawer`, `--z-backdrop`, `--z-modal`, `--z-toast`).
+* **Tipografia Fluida**: Uso de funções CSS nativas `clamp()` para escalonamento automático de fontes de acordo com a largura da tela sem quebras abruptas.
+
+### 2. Layouts Responsivos com CSS Grid e Flexbox
+* **Grandes Blocos em CSS Grid**:
+  * Hero Section em split-grid assimétrico (`1.15fr 0.85fr`).
+  * Grade de métricas de impacto em 4 colunas com adaptação automática para 2 colunas e 1 coluna em telas menores.
+  * Galeria de projetos sociais estruturada em grade de 3 colunas (`grid-template-columns: repeat(3, 1fr)`).
+  * Formulário avançado com subgrades independentes para CEP/Número e Cidade/UF.
+* **Componentes Internos com Flexbox**:
+  * Navbar e cabeçalho alinhados com `justify-content: space-between` e `align-items: center`.
+  * Cards de projetos com estrutura flexbox vertical (`flex-direction: column`) para manter o rodapé alinhado independentemente do tamanho do texto descritivo.
+  * Indicadores de progresso e botões de ação com alinhamento dinâmico.
+
+### 3. Navegação Interativa Desktop & Mobile
+* **Desktop**: Header translúcido com efeito *glassmorphism* (`backdrop-filter: blur(14px)`), indicador animado de link ativo no rodapé de cada item.
+* **Mobile Drawer**: Menu lateral deslizante com curva `cubic-bezier(0.16, 1, 0.3, 1)`, fundo escurecido com *backdrop blur* e **botão hamburger morfológico** que se transforma suavemente em um "X" através de rotações e translações CSS3 em 3 barras vetoriais.
+
+### 4. Cartões, Modais e Componentes Auxiliares
+* **Cartões Dinâmicos**: Elevação em hover (`translateY(-6px)`), zoom suave na fotografia e **efeito shimmer** animado na barra de progresso (`@keyframes shimmerProgress`).
+* **Pílulas de Status**: Indicador visual com ponto pulsante contínuo (`@keyframes pulseDot`) para projetos em andamento e novas vagas.
+* **Modais Acessíveis**: Dossiê detalhado dos projetos sociais e Simulador de QR Code PIX com backdrop blur, animação de entrada com escala, fechamento por clique externo ou tecla `Escape` e foco acessível.
+* **Feedbacks de Formulário**: Anel de foco luminoso, validações visuais com ícones de sucesso/erro e cards de área de atuação com marcação em pop-check ao serem selecionados.
+
+### 5. Acessibilidade Digital (WCAG AAA)
+* **Alto Contraste no Foco**: Estilização estrita de `:focus-visible` com anel de 3px e deslocamento (`outline-offset: 3px`).
+* **Redução de Movimento**: Suporte nativo à diretiva `@media (prefers-reduced-motion: reduce)` que desativa animações para usuários sensíveis.
+* **Touch Targets Otimizados**: Todos os botões e links de toque possuem dimensões mínimas de 44x44px.
+* **Estilo de Impressão**: Folha de estilos dedicada `@media print` otimizando a página para impressão limpa de relatórios da ONG.
+
+---
+
 ## 💻 Tecnologias Utilizadas
 
-* **HTML5 Semântico**: Estrutura acessível, tags semânticas e metadados OpenGraph para SEO.
+* **HTML5 Semântico**: Estrutura acessível, tags semânticas, ARIA roles e metadados OpenGraph para SEO.
 * **CSS3 Moderno**: 
   * Layout responsivo utilizando Flexbox e CSS Grid.
   * Variáveis customizadas CSS (`:root` e `[data-theme="dark"]`).
   * Microinterações, efeitos de *glassmorphism* e transições suaves.
 * **JavaScript ES6+**:
   * Manipulação limpa de DOM sem dependências de frameworks externos (Zero dependências).
-  * API nativa `IntersectionObserver` para contadores de impacto.
+  * API nativa `IntersectionObserver` para contadores de impacto animados.
   * API `fetch` assíncrona para integração com o web service do ViaCEP.
   * API `navigator.clipboard` para cópia rápida da chave PIX.
-* **Git & GitHub**: Versionamento de código, controle de branches e deploy.
+* **Git & GitHub**: Versionamento de código, controle de branches e deploy contínuo.
 
 ---
 
