@@ -327,10 +327,16 @@
   transition: var(--transition);
 }
 
-.project-card:hover {
+.project-card:hover,
+.project-card:focus-within {
   transform: translateY(-6px);
   box-shadow: var(--shadow-xl);
-  border-color: var(--border-focus);
+  border-color: var(--primary);
+}
+
+.project-card:focus-within {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
 }
 
 .project-thumb {
@@ -681,6 +687,36 @@
 }
 
 /* Validation Feedback Styles */
+.form-input:disabled,
+.form-select:disabled,
+.form-textarea:disabled {
+  background-color: var(--bg-subtle);
+  color: var(--text-muted);
+  cursor: not-allowed;
+  border-color: var(--border);
+  opacity: 0.7;
+}
+
+.form-group:focus-within .form-label {
+  color: var(--primary);
+  transition: color var(--transition);
+}
+
+/* Pseudo-classes nativas do HTML5 */
+.form-input:not(:placeholder-shown):user-invalid,
+.form-select:user-invalid,
+.form-textarea:user-invalid {
+  border-color: var(--error);
+  background-color: var(--error-bg);
+}
+
+.form-input:not(:placeholder-shown):user-valid,
+.form-select:user-valid {
+  border-color: var(--success);
+  background-color: var(--success-bg);
+}
+
+/* Classes semânticas gerenciadas por JS */
 .form-group.is-valid .form-input {
   border-color: var(--success);
   background-color: var(--success-bg);

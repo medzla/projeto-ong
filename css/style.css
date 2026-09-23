@@ -110,6 +110,10 @@
   --primary-light: rgba(5, 150, 105, 0.18);
   --secondary-light: rgba(2, 132, 199, 0.18);
   --accent-light: rgba(245, 158, 11, 0.18);
+  --success-bg: rgba(16, 185, 129, 0.15);
+  --error-bg: rgba(239, 68, 68, 0.15);
+  --warning-bg: rgba(245, 158, 11, 0.15);
+  --info-bg: rgba(2, 132, 199, 0.15);
   --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.45);
   --shadow-lg: 0 10px 24px rgba(0, 0, 0, 0.55);
   --shadow-xl: 0 20px 30px rgba(0, 0, 0, 0.65);
@@ -284,6 +288,157 @@ img {
   width: 100%;
 }
 
+/* ==========================================================================
+   Menu Dropdown Interativo (Desktop & Submenus Acessíveis)
+   ========================================================================== */
+.nav-item-dropdown {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.dropdown-toggle {
+  background: transparent;
+  border: none;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: var(--space-2) 0;
+  transition: color var(--transition);
+  position: relative;
+}
+
+.dropdown-toggle:hover,
+.dropdown-toggle:focus-visible,
+.nav-item-dropdown:hover .dropdown-toggle,
+.nav-item-dropdown.is-open .dropdown-toggle {
+  color: var(--primary);
+}
+
+.dropdown-toggle::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  border-radius: var(--radius-full);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateX(-50%);
+}
+
+.dropdown-toggle:hover::after,
+.nav-item-dropdown:hover .dropdown-toggle::after,
+.nav-item-dropdown.is-open .dropdown-toggle::after {
+  width: 100%;
+}
+
+.dropdown-chevron {
+  display: inline-block;
+  transition: transform 0.25s ease;
+  vertical-align: middle;
+}
+
+.nav-item-dropdown:hover .dropdown-chevron,
+.nav-item-dropdown:focus-within .dropdown-chevron,
+.nav-item-dropdown.is-open .dropdown-chevron {
+  transform: rotate(180deg);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 0.65rem);
+  left: 0;
+  min-width: 275px;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-xl);
+  padding: var(--space-2);
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity 0.22s ease, transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.22s;
+  z-index: var(--z-dropdown);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+/* Indicador pontiagudo superior */
+.dropdown-menu::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 24px;
+  width: 10px;
+  height: 10px;
+  background-color: var(--bg-surface);
+  border-left: 1px solid var(--border);
+  border-top: 1px solid var(--border);
+  transform: rotate(45deg);
+}
+
+.nav-item-dropdown:hover .dropdown-menu,
+.nav-item-dropdown:focus-within .dropdown-menu,
+.nav-item-dropdown.is-open .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 0.65rem 0.85rem;
+  border-radius: var(--radius-sm);
+  color: var(--text-main);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+  background-color: var(--primary-light);
+  color: var(--primary);
+  transform: translateX(4px);
+  outline: none;
+}
+
+.dropdown-icon {
+  font-size: 1.25rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.dropdown-text {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.dropdown-text strong {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: inherit;
+}
+
+.dropdown-text small {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  line-height: 1.3;
+}
+
 /* Ações do Topo */
 .header-actions {
   display: flex;
@@ -436,6 +591,29 @@ img {
 .btn-lg {
   padding: 0.9rem 2.25rem;
   font-size: 1.05rem;
+}
+
+/* Pseudo-classes e Estados Interativos Avançados para Botões */
+.btn:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 4px var(--primary-light);
+}
+
+.btn:active {
+  transform: translateY(1px) scale(0.98);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.btn:disabled,
+.btn[disabled],
+.btn.disabled {
+  opacity: 0.55;
+  cursor: not-allowed !important;
+  pointer-events: none;
+  filter: grayscale(45%);
+  box-shadow: none !important;
+  transform: none !important;
 }
 
 /* Badges e Pílulas com Ponto Pulsante */
@@ -702,6 +880,134 @@ img {
 }
 
 /* ==========================================================================
+   Alertas Contextuais Integrados (Feedback Semântico da Interface)
+   ========================================================================== */
+.alert {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  border-left-width: 5px;
+  margin-bottom: var(--space-6);
+  font-size: 0.925rem;
+  line-height: 1.5;
+  position: relative;
+  transition: opacity 0.3s ease, transform 0.3s ease, margin 0.3s ease;
+  animation: alertFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: var(--shadow-sm);
+}
+
+@keyframes alertFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.alert.is-closing {
+  opacity: 0;
+  transform: translateY(-8px);
+  margin-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.alert-icon {
+  font-size: 1.35rem;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.alert-content {
+  flex-grow: 1;
+}
+
+.alert-title {
+  font-family: var(--font-heading);
+  font-size: 0.975rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+  color: inherit;
+}
+
+.alert-description {
+  color: var(--text-main);
+  font-size: 0.885rem;
+}
+
+.alert-description a {
+  color: inherit;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.alert-close {
+  background: transparent;
+  border: none;
+  color: inherit;
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-sm);
+  opacity: 0.6;
+  transition: opacity var(--transition), background-color var(--transition);
+  line-height: 1;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.alert-close:hover {
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+/* Variantes Semânticas de Alertas */
+.alert-info {
+  background-color: var(--info-bg);
+  border-color: rgba(2, 132, 199, 0.25);
+  border-left-color: var(--secondary);
+  color: var(--text-main);
+}
+.alert-info .alert-icon { color: var(--secondary); }
+
+.alert-success {
+  background-color: var(--success-bg);
+  border-color: rgba(16, 185, 129, 0.25);
+  border-left-color: var(--success);
+  color: var(--text-main);
+}
+.alert-success .alert-icon { color: var(--success); }
+
+.alert-warning {
+  background-color: var(--warning-bg);
+  border-color: rgba(245, 158, 11, 0.25);
+  border-left-color: var(--warning);
+  color: var(--text-main);
+}
+.alert-warning .alert-icon { color: var(--warning); }
+
+.alert-error,
+.alert-danger {
+  background-color: var(--error-bg);
+  border-color: rgba(239, 68, 68, 0.25);
+  border-left-color: var(--error);
+  color: var(--text-main);
+}
+.alert-error .alert-icon,
+.alert-danger .alert-icon { color: var(--error); }
+
+/* ==========================================================================
    Toast Notification System
    ========================================================================== */
 .toast-container {
@@ -754,6 +1060,20 @@ img {
 }
 .toast.error .toast-icon {
   color: var(--error);
+}
+
+.toast.info {
+  border-left: 4px solid var(--secondary);
+}
+.toast.info .toast-icon {
+  color: var(--secondary);
+}
+
+.toast.warning {
+  border-left: 4px solid var(--warning);
+}
+.toast.warning .toast-icon {
+  color: var(--warning);
 }
 
 .toast-content h5 {

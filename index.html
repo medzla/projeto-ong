@@ -40,7 +40,50 @@
         <ul class="nav-list">
           <li><a href="index.html" class="nav-link active">Início</a></li>
           <li><a href="#sobre" class="nav-link">Sobre Nós</a></li>
-          <li><a href="projetos.html" class="nav-link">Projetos Sociais</a></li>
+          <li class="nav-item-dropdown">
+            <button type="button" class="nav-link dropdown-toggle" id="dropdownProjetosBtn" aria-haspopup="true" aria-expanded="false">
+              <span>Projetos Sociais</span>
+              <svg class="dropdown-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownProjetosBtn" role="menu">
+              <li role="none">
+                <a href="projetos.html" class="dropdown-item" role="menuitem">
+                  <span class="dropdown-icon" aria-hidden="true">🌟</span>
+                  <div class="dropdown-text">
+                    <strong>Todos os Projetos</strong>
+                    <small>Catálogo completo com filtros</small>
+                  </div>
+                </a>
+              </li>
+              <li role="none">
+                <a href="projetos.html?cat=educacao" class="dropdown-item" role="menuitem">
+                  <span class="dropdown-icon" aria-hidden="true">📚</span>
+                  <div class="dropdown-text">
+                    <strong>Educação do Futuro</strong>
+                    <small>Reforço escolar e tecnologia</small>
+                  </div>
+                </a>
+              </li>
+              <li role="none">
+                <a href="projetos.html?cat=meio-ambiente" class="dropdown-item" role="menuitem">
+                  <span class="dropdown-icon" aria-hidden="true">🌱</span>
+                  <div class="dropdown-text">
+                    <strong>Verde Urbano</strong>
+                    <small>Hortas e sustentabilidade</small>
+                  </div>
+                </a>
+              </li>
+              <li role="none">
+                <a href="projetos.html?cat=tecnologia" class="dropdown-item" role="menuitem">
+                  <span class="dropdown-icon" aria-hidden="true">💻</span>
+                  <div class="dropdown-text">
+                    <strong>Inclusão Digital Tech</strong>
+                    <small>Programação para jovens</small>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </li>
           <li><a href="#impacto" class="nav-link">Impacto</a></li>
           <li><a href="#doar" class="nav-link">Como Ajudar</a></li>
           <li><a href="cadastro.html" class="nav-link">Seja Voluntário</a></li>
@@ -313,6 +356,16 @@
             <span class="badge badge-primary">Sua Contribuição Direta</span>
             <h2 class="section-title" id="donationHeading">Simulador de Apoio & Doação Instantânea</h2>
             <p class="section-subtitle">Escolha um valor e veja como sua contribuição se traduz em impacto imediato.</p>
+          </div>
+
+          <!-- Alerta Contextual Integrado -->
+          <div class="alert alert-info" role="region" aria-label="Informações sobre transparência e incentivo fiscal">
+            <div class="alert-icon" aria-hidden="true">ℹ️</div>
+            <div class="alert-content">
+              <h4 class="alert-title">Incentivo Fiscal & Transparência Contínua</h4>
+              <p class="alert-description">Todas as doações são 100% auditadas por conselhos independentes e podem ser deduzidas no seu Imposto de Renda. Emitimos recibo com autenticação fiscal imediatamente após a confirmação do PIX.</p>
+            </div>
+            <button type="button" class="alert-close" aria-label="Dispensar alerta fiscal">&times;</button>
           </div>
 
           <div class="donation-amounts-grid" role="group" aria-label="Selecione o valor de doação">

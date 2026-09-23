@@ -138,6 +138,91 @@ O projeto utiliza o estado da arte do **CSS3 puro (Vanilla CSS)**, combinando t�
 
 ---
 
+## 🔬 Engenharia de Interatividade, Microinterações e Estados no CSS3
+
+> *"Os estados interativos são a forma de o software dialogar com o utilizador final sem demandar leituras extensas."*
+
+A arquitetura CSS3 da plataforma do **Instituto Esperança Viva** foi concebida sob rigorosos padrões de usabilidade, ergonomia cognitiva e design instrucional. Cada componente visual comunica seu propósito e estado operacional através de microinterações determinísticas, prevenindo erros do usuário e acelerando as conversões digitais (doações e inscrições de voluntários).
+
+### 1. Estados Interativos Convencionais em Botões (`.btn`)
+Os botões representam os principais pontos de conversão da interface. Para garantir que o usuário perceba instantaneamente a resposta às suas ações motoras, foram implementadas as 4 mutações visuais fundamentais:
+* **`:hover` (Sobreposição)**: Quando o cursor repousa sobre o botão, uma transição de 0.25s aplica elevação mecânica sutil (`transform: translateY(-2px)`) combinada com aprofundamento da sombra de projeção (`box-shadow: 0 6px 20px rgba(...)`) e realce do gradiente cromático. Isso comunica inequivocamente a clicabilidade do elemento.
+* **`:focus` e `:focus-visible` (Foco Assistivo & Teclado)**: Seguindo os critérios W3C WCAG 2.1 (Critério 2.4.7), o foco por teclado gera um anel de destaque externo com `outline: 3px solid var(--primary)` e afastamento `outline-offset: 3px`, além de halo luminoso suave (`box-shadow: 0 0 0 4px var(--primary-light)`). Essa separação garante que usuários navegando via tecla `Tab` nunca percam a referência espacial de navegação, ao mesmo tempo em que previne anéis invasivos em cliques normais com o mouse.
+* **`:active` (Compressão / Clique)**: Ao pressionar o botão, ocorre uma micro-resposta háptica virtual: o elemento sofre leve deslocamento descendente (`transform: translateY(1px) scale(0.98)`) e a sombra é encurtada (`box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2)`). Essa física mecânica simula a depressão física de uma tecla, confirmando ao cérebro do usuário que o gatilho da ação foi ativado com sucesso.
+* **`:disabled` / `[disabled]` / `.disabled` (Inoperância Semântica)**: Quando uma ação está indisponível (como envio pendente de termos legais ou processamento em curso), o elemento é desativado visualmente com atenuação de opacidade (`opacity: 0.55`), dessaturação cromática parcial (`filter: grayscale(45%)`), remoção total de elevações e cursor indicativo de bloqueio (`cursor: not-allowed !important; pointer-events: none;`).
+
+```css
+/* Código-fonte representativo em style.css */
+.btn {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(5, 150, 105, 0.4);
+}
+.btn:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 4px var(--primary-light);
+}
+.btn:active {
+  transform: translateY(1px) scale(0.98);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+.btn:disabled, .btn[disabled] {
+  opacity: 0.55;
+  cursor: not-allowed !important;
+  pointer-events: none;
+  filter: grayscale(45%);
+}
+```
+
+### 2. Validação Visual Contínua de Formulários
+Para assegurar a integridade na coleta de dados de voluntários e doadores sem gerar atrito cognitivo:
+* **Detecção de Validade Nativista**: Foram aplicadas as pseudo-classes CSS3 `:not(:placeholder-shown):user-invalid` e `:not(:placeholder-shown):user-valid`. Isso assegura que o campo não exiba mensagens de erro agressivas antes que o usuário tenha terminado a digitação e saído do campo.
+* **Foco Contextual em Grupos de Entrada (`.form-group:focus-within`)**: Ao interagir com qualquer elemento de entrada (seja texto, select, máscara ou textarea), a respectiva `<label>` associada adquire a cor primária de destaque da marca (`color: var(--primary)`), estabelecendo vínculo óptico direto entre o rótulo descritivo e o campo em edição.
+* **Sinalização Dual (Cores & Ícones Acessíveis)**: Para atender usuários daltônicos ou com baixa visão, as bordas verde (`var(--success)`) e vermelha (`var(--error)`) são sempre acompanhadas de ícones tipográficos inconfundíveis (`✓` para sucesso e `⚠` para advertência/erro) com textos descritivos vinculados via `aria-describedby` e dotados de atributos `aria-live="polite"`.
+
+### 3. Componentes Padronizados de Feedback Visual Imediato
+Para consolidar a confiança do usuário na plataforma institucional, foi implementado um quarteto consistente de componentes de feedback:
+1. **Alertas Contextuais Integrados (`.alert`)**: Mensagens em bloco posicionadas organicamente dentro do fluxo da página (`.alert-info`, `.alert-success`, `.alert-warning`, `.alert-error`). Apresentam borda esquerda de 5px com a cor semântica do estado, fundo com luminosidade equilibrada para modos claro/escuro, ícone vetorial temático, título em destaque e botão de descarte (`.alert-close`) com animação de retração suave.
+2. **Modais de Informação (`.modal-overlay` & `.modal-dialog`)**: Diálogos modais utilizados para aprofundamento de detalhes dos projetos e doações PIX. Contam com máscara de fundo translúcida (`backdrop-filter: blur(8px)`), contenção de foco para navegação por leitores de tela e múltiplos métodos de escape (tecla `Escape`, botão "X" dedicado ou clique na área circundante).
+3. **Toasts Não-Obstrutivos (`.toast`)**: Notificações flutuantes assíncronas empilhadas no canto inferior direito da tela. Acionadas automaticamente após eventos (como alternância de tema, limpeza de formulário ou envio de cadastro), permanecem ativas por 4.5 segundos com entrada elástica (`cubic-bezier(0.175, 0.885, 0.32, 1.275)`).
+4. **Badges e Pílulas de Status (`.badge`)**: Crachás semânticos para categorização de causas sociais, contando com ponto pulsante contínuo (`.pulse-dot`) desenvolvido em CSS3 puro através da animação `@keyframes pulseDot`.
+
+### 4. Arquitetura da Navegação: Dropdown Desktop & Accordion Hamburger Mobile
+A plataforma atende à necessidade primordial de apresentar a amplitude de projetos da ONG sem poluir a visão do usuário:
+* **Desktop (Submenu Dropdown)**:
+  * O item *"Projetos Sociais"* conta com acionamento acessível via cursor (`:hover`) ou teclado (`:focus-within` / clique), abrindo um container suspenso com efeito *glassmorphism* (`backdrop-filter: blur(14px)`), sombra profunda (`var(--shadow-xl)`) e chevron de orientação que gira 180° com suavidade.
+  * O menu é semanticamente demarcado com atributos W3C ARIA (`aria-haspopup="true"`, `aria-expanded="false"`, `role="menu"` e `role="menuitem"`).
+* **Mobile (Accordion Hamburger Drawer)**:
+  * Em telas com largura inferior a 992px, a barra de navegação é comprimida no botão hambúrguer com barras morfológicas que se transformam no ícone "X" de fechamento.
+  * A gaveta móvel desliza verticalmente com fundo escurecido. Dentro dela, o submenu não flutua fora da tela; ao contrário, ele se expande verticalmente em formato de **Accordion expansível**, mantendo todos os links secundários acessíveis com áreas de toque otimizadas para polegares (44x44px).
+
+### 5. Coesão e Preparação para Desenvolvedores Back-End
+Para garantir escalabilidade na adoção por futuros desenvolvedores de back-end (em stacks como Node.js, Python/Django, Java/Spring ou PHP/Laravel):
+* **Independência de Frameworks**: Estilos totalmente desacoplados de regras imperativas em JavaScript. Qualquer engine de renderização de templates pode alternar estados adicionando ou removendo classes elementares (`is-valid`, `is-invalid`, `is-open`, `active`, `disabled`).
+* **Design Tokens Globais**: Toda a estilização de alertas, toasts, botões e formulários depende unicamente dos tokens declarados no `:root` (`--primary`, `--secondary`, `--success`, `--error`, `--border`, etc.). Qualquer personalização de marca ou integração de temas dinâmicos requer alteração em um único arquivo (`css/style.css`).
+
+---
+
+## 📸 Galeria de Comprovação Visual (Capturas de Tela)
+
+A arquitetura, responsividade e microinterações foram testadas e validadas nos navegadores através de capturas de tela em alta definição geradas em modo *headless*:
+
+| Componente / Interface | Resolução & Contexto | Pré-visualização |
+| :--- | :--- | :--- |
+| **Página Inicial (Desktop)** | `1280x900` • Header com *glassmorphism*, Hero e métricas de impacto | ![Home Desktop](assets/images/screenshots/desktop_home.png) |
+| **Menu Dropdown Interativo (Desktop)** | `1280x900` • Submenu suspenso com chevron rotacionado e links categorizados | ![Dropdown Aberto](assets/images/screenshots/desktop_dropdown.png) |
+| **Galeria de Projetos & Alerta Contextual** | `1280x950` • Barra de filtros, alerta `.alert-success` e cards com zoom | ![Projetos Desktop](assets/images/screenshots/desktop_projects.png) |
+| **Modal de Dossiê do Projeto** | `1280x950` • Caixa de diálogo com backdrop blur, estatísticas e acessibilidade | ![Modal de Projeto](assets/images/screenshots/desktop_modal.png) |
+| **Formulário de Cadastro & Alerta LGPD** | `1280x1000` • Alerta informativo `.alert-info`, 4 fieldsets e botões com estados | ![Cadastro Desktop](assets/images/screenshots/desktop_cadastro.png) |
+| **Validação Visual de Campos (Erros e Sucessos)** | `1280x1000` • Indicadores de validação visual com mensagens dinâmicas e ícones | ![Validação Visual](assets/images/screenshots/desktop_cadastro_validation.png) |
+| **Página Inicial (Mobile Viewport)** | `390x844` (iPhone/Android) • Layout responsivo adaptado com botão hambúrguer | ![Home Mobile](assets/images/screenshots/mobile_home.png) |
+| **Menu Gaveta Mobile & Accordion Aberto** | `390x844` • Botão morphing "X", gaveta deslizante e dropdown expandido | ![Menu Mobile Aberto](assets/images/screenshots/mobile_drawer.png) |
+
+---
+
 ## 💻 Tecnologias Utilizadas
 
 * **HTML5 Semântico**: Estrutura acessível, tags semânticas, ARIA roles e metadados OpenGraph para SEO.

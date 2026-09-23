@@ -256,4 +256,51 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  // Listener do evento reset (botão Limpar Dados)
+  volunteerForm.addEventListener('reset', () => {
+    volunteerForm.querySelectorAll('.is-valid, .is-invalid').forEach(el => {
+      el.classList.remove('is-valid', 'is-invalid');
+    });
+    volunteerForm.querySelectorAll('.feedback-msg.error').forEach(msg => {
+      msg.textContent = '';
+      msg.className = 'feedback-msg hint';
+    });
+    if (fileNameDisplay) {
+      fileNameDisplay.textContent = 'Clique para selecionar seu arquivo ou arraste até aqui';
+      fileNameDisplay.style.color = '';
+    }
+    showToast('Formulário Limpo', 'Todos os campos foram restaurados ao padrão.', 'info');
+  });
+
+  // Demonstração visual de validação para testes e capturas automatizadas
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get('state') === 'validation') {
+    const nome = document.getElementById('nome');
+    const cpf = document.getElementById('cpf');
+    const email = document.getElementById('email');
+    const tel = document.getElementById('telefone');
+    const cep = document.getElementById('cep');
+
+    if (nome) {
+      nome.value = 'Maria Eduarda Silva';
+      FormValidator.setFieldState(nome, true);
+    }
+    if (cpf) {
+      cpf.value = '123.456.789-00';
+      FormValidator.setFieldState(cpf, false, 'CPF inválido: os dígitos verificadores calculados não conferem.');
+    }
+    if (email) {
+      email.value = 'maria.ong@exemplo.com';
+      FormValidator.setFieldState(email, true);
+    }
+    if (tel) {
+      tel.value = '(11) 98765-4321';
+      FormValidator.setFieldState(tel, true);
+    }
+    if (cep) {
+      cep.value = '00000-000';
+      FormValidator.setFieldState(cep, false, 'CEP não encontrado na base de dados dos Correios.');
+    }
+  }
 });

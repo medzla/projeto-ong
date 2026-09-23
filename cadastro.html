@@ -40,7 +40,50 @@
         <ul class="nav-list">
           <li><a href="index.html" class="nav-link">Início</a></li>
           <li><a href="index.html#sobre" class="nav-link">Sobre Nós</a></li>
-          <li><a href="projetos.html" class="nav-link">Iniciativas Solidárias</a></li>
+          <li class="nav-item-dropdown">
+            <button type="button" class="nav-link dropdown-toggle" id="dropdownProjetosBtn" aria-haspopup="true" aria-expanded="false">
+              <span>Projetos Sociais</span>
+              <svg class="dropdown-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownProjetosBtn" role="menu">
+              <li role="none">
+                <a href="projetos.html" class="dropdown-item" role="menuitem">
+                  <span class="dropdown-icon" aria-hidden="true">🌟</span>
+                  <div class="dropdown-text">
+                    <strong>Todos os Projetos</strong>
+                    <small>Catálogo completo com filtros</small>
+                  </div>
+                </a>
+              </li>
+              <li role="none">
+                <a href="projetos.html?cat=educacao" class="dropdown-item" role="menuitem">
+                  <span class="dropdown-icon" aria-hidden="true">📚</span>
+                  <div class="dropdown-text">
+                    <strong>Educação do Futuro</strong>
+                    <small>Reforço escolar e tecnologia</small>
+                  </div>
+                </a>
+              </li>
+              <li role="none">
+                <a href="projetos.html?cat=meio-ambiente" class="dropdown-item" role="menuitem">
+                  <span class="dropdown-icon" aria-hidden="true">🌱</span>
+                  <div class="dropdown-text">
+                    <strong>Verde Urbano</strong>
+                    <small>Hortas e sustentabilidade</small>
+                  </div>
+                </a>
+              </li>
+              <li role="none">
+                <a href="projetos.html?cat=tecnologia" class="dropdown-item" role="menuitem">
+                  <span class="dropdown-icon" aria-hidden="true">💻</span>
+                  <div class="dropdown-text">
+                    <strong>Inclusão Digital Tech</strong>
+                    <small>Programação para jovens</small>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </li>
           <li><a href="index.html#impacto" class="nav-link">Impacto</a></li>
           <li><a href="index.html#doar" class="nav-link">Como Ajudar</a></li>
           <li><a href="cadastro.html" class="nav-link active" aria-current="page">Seja Voluntário</a></li>
@@ -98,6 +141,16 @@
 
         <!-- FORMULÁRIO PRINCIPAL: W3C Validated, Semantic & Accessible -->
         <form id="volunteerForm" action="#" method="POST" autocomplete="on" role="form" novalidate>
+
+          <!-- Alerta Contextual Integrado: Orientações & LGPD -->
+          <div class="alert alert-info" role="region" aria-label="Orientações sobre o cadastro de voluntário">
+            <div class="alert-icon" aria-hidden="true">💡</div>
+            <div class="alert-content">
+              <h4 class="alert-title">Processo de Inscrição & Proteção de Dados (LGPD)</h4>
+              <p class="alert-description">Preencha seus dados com atenção. Os campos com asterisco (<span style="color:var(--error); font-weight:bold;">*</span>) são de preenchimento obrigatório. Seus dados pessoais trafegam com criptografia e serão utilizados exclusivamente para alinhamento e acolhimento com a coordenação de projetos do Instituto Esperança Viva.</p>
+            </div>
+            <button type="button" class="alert-close" aria-label="Dispensar aviso sobre cadastro">&times;</button>
+          </div>
 
           <!-- ===============================================================
                GRUPO 1: DADOS PESSOAIS & INFORMAÇÕES PESSOAIS (HTML5 Avançado)
@@ -470,9 +523,13 @@
             </div>
           </fieldset>
 
-          <!-- BOTÕES DE SUBMISSÃO -->
+          <!-- BOTÕES DE SUBMISSÃO COM ESTADOS INTERATIVOS (HOVER, ACTIVE, FOCUS, DISABLED) -->
           <div class="form-actions-bar">
             <a href="index.html" class="btn btn-secondary">Cancelar e Voltar</a>
+            <button type="reset" class="btn btn-secondary" id="resetBtn">Limpar Dados</button>
+            <button type="button" class="btn btn-accent" id="disabledDemoBtn" disabled title="Exemplo visual da pseudo-classe CSS3 :disabled">
+              🔒 Ação Desabilitada
+            </button>
             <button type="submit" id="submitBtn" class="btn btn-primary btn-lg">
               ✨ Concluir Cadastro de Voluntário
             </button>

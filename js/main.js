@@ -16,12 +16,20 @@ function showToast(title, message, type = 'success') {
     document.body.appendChild(toastContainer);
   }
 
+  const icons = {
+    success: '✓',
+    error: '✕',
+    warning: '⚠',
+    info: 'ℹ'
+  };
+  const iconChar = icons[type] || 'ℹ';
+
   const toast = document.createElement('div');
   toast.className = `toast ${type}`;
   toast.setAttribute('role', 'status');
   toast.setAttribute('aria-live', 'polite');
   toast.innerHTML = `
-    <div class="toast-icon" aria-hidden="true">${type === 'success' ? '✓' : '⚠'}</div>
+    <div class="toast-icon" aria-hidden="true">${iconChar}</div>
     <div class="toast-content">
       <h5>${title}</h5>
       <p>${message}</p>
@@ -136,15 +144,94 @@ document.addEventListener('DOMContentLoaded', () => {
     mobileMenuBtn.addEventListener('click', toggleMobileNav);
     navBackdrop.addEventListener('click', toggleMobileNav);
 
-    // Fechar ao clicar em qualquer link
+    // Fechar ao clicar em links (exceto se for toggle de submenu)
     mainNav.querySelectorAll('.nav-link').forEach(link => {
-      link.addEventListener('click', () => {
+      link.addEventListener('click', (e) => {
+        if (link.classList.contains('dropdown-toggle')) {
+          // No mobile ou desktop, clique no toggle abre ou fecha submenu
+          return;
+        }
         if (mainNav.classList.contains('open')) {
           toggleMobileNav();
         }
       });
     });
   }
+
+  // --- Controle de Submenus Dropdown (Desktop & Mobile Accordion) ---
+  const dropdownContainers = document.querySelectorAll('.nav-item-dropdown');
+
+  dropdownContainers.forEach(container => {
+    const toggleBtn = container.querySelector('.dropdown-toggle');
+    if (!toggleBtn) return;
+
+    toggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const willBeOpen = !container.classList.contains('is-open');
+      
+      // Fechar outros dropdowns abertos
+      dropdownContainers.forEach(other => {
+        if (other !== container) {
+          other.classList.remove('is-open');
+          const otherBtn = other.querySelector('.dropdown-toggle');
+          if (otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      container.classList.toggle('is-open', willBeOpen);
+      toggleBtn.setAttribute('aria-expanded', willBeOpen ? 'true' : 'false');
+    });
+  });
+
+  // Fechar dropdowns ao clicar fora
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.nav-item-dropdown')) {
+      dropdownContainers.forEach(d => {
+        d.classList.remove('is-open');
+        const btn = d.querySelector('.dropdown-toggle');
+        if (btn) btn.setAttribute('aria-expanded', 'false');
+      });
+    }
+  });
+
+  // Fechar dropdowns com tecla Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      dropdownContainers.forEach(d => {
+        if (d.classList.contains('is-open')) {
+          d.classList.remove('is-open');
+          const btn = d.querySelector('.dropdown-toggle');
+          if (btn) {
+            btn.setAttribute('aria-expanded', 'false');
+            btn.focus();
+          }
+        }
+      });
+    }
+  });
+
+  // Fechar gaveta mobile ao clicar em item interno do submenu
+  document.querySelectorAll('.dropdown-item').forEach(item => {
+    item.addEventListener('click', () => {
+      if (mainNav && mainNav.classList.contains('open')) {
+        toggleMobileNav();
+      }
+    });
+  });
+
+  // --- Gerenciador de Alertas Contextuais (Descarte Acessível) ---
+  document.addEventListener('click', (e) => {
+    const closeBtn = e.target.closest('.alert-close');
+    if (closeBtn) {
+      const alertEl = closeBtn.closest('.alert');
+      if (alertEl) {
+        alertEl.classList.add('is-closing');
+        setTimeout(() => {
+          alertEl.remove();
+        }, 320);
+      }
+    }
+  });
 
   // --- Contadores Numéricos Animados com IntersectionObserver ---
   const counterElements = document.querySelectorAll('.metric-number');
@@ -194,4 +281,29 @@ document.addEventListener('DOMContentLoaded', () => {
       link.classList.add('active');
     }
   });
+
+  // --- Suporte a Estados Visuais para Testes & Capturas Automatizadas ---
+  const urlParams = new URLSearchParams(window.location.search);
+  const testState = urlParams.get('state');
+
+  if (testState === 'dropdown') {
+    const dropdown = document.querySelector('.nav-item-dropdown');
+    if (dropdown) {
+      dropdown.classList.add('is-open');
+      const toggle = dropdown.querySelector('.dropdown-toggle');
+      if (toggle) toggle.setAttribute('aria-expanded', 'true');
+    }
+  } else if (testState === 'mobile-menu') {
+    if (mobileMenuBtn && mainNav) {
+      mainNav.classList.add('open');
+      mobileMenuBtn.classList.add('is-active');
+      mobileMenuBtn.setAttribute('aria-expanded', 'true');
+      const dropdown = document.querySelector('.nav-item-dropdown');
+      if (dropdown) dropdown.classList.add('is-open');
+    }
+  } else if (testState === 'modal') {
+    setTimeout(() => {
+      openModal('projectModal');
+    }, 150);
+  }
 });
