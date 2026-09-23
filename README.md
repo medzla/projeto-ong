@@ -45,17 +45,29 @@ O projeto foi rigorosamente estruturado atendendo aos requisitos técnicos do it
   * Sistema de filtros por categoria em tempo real (*Todos*, *Educação & Infância*, *Meio Ambiente*, *Inclusão Digital* e *Apoio Comunitário*).
   * Cards semânticos estruturados com tags, status da iniciativa (*Em Andamento*, *Inscrições Abertas*), metas visuais com barra de progresso em porcentagem e botão para se voluntariar.
 
-### 3. Formulários Interativos e Cadastro
+### 3. Formulários Interativos e Cadastro Avançado
 * **`cadastro.html` (Ficha Oficial de Adesão ao Voluntariado)**:
   * **Agrupamento Lógico Semântico**: Estruturação obrigatória utilizando `<fieldset>` e `<legend>`:
-    * **1. Dados Pessoais & Contato**: Nome completo, CPF, Data de Nascimento, E-mail e WhatsApp.
+    * **1. Dados Pessoais & Identificação**: Nome completo, CPF, Data de Nascimento, E-mail, Celular/WhatsApp e Área de Ocupação.
     * **2. Endereço Residencial**: CEP, Logradouro, Número, Complemento, Bairro, Cidade e UF.
-    * **3. Perfil de Atuação**: Seleção interativa de áreas de interesse (cards visuais selecionáveis), horários/disponibilidade semanal e descrição de habilidades prévias.
+    * **3. Perfil de Atuação & Disponibilidade**: Seleção interativa de áreas de interesse, dedicação semanal estimada em horas, turnos de atuação, envio de currículo e descrição de competências.
     * **4. Termos e Compromisso Social**: Declaração de adesão voluntária conforme a **Lei Federal nº 9.608/1998** e consentimento da **LGPD (Lei nº 13.709/2018)**.
+  * **Tipos de Inputs Avançados do HTML5**:
+    * `type="text"` com atributos `autocomplete="name"`, `minlength`, `maxlength` e `spellcheck="false"`.
+    * `type="email"` com validação nativa de formato e `pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"`.
+    * `type="date"` com limites de consistência (`min="1920-01-01"` e `max="2010-12-31"`).
+    * `type="tel"` com `inputmode="tel"` e `pattern="\([0-9]{2}\)\s[0-9]{4,5}-[0-9]{4}"`.
+    * `type="number"` para número residencial com `min="1"` e `max="999999"`.
+    * `<datalist id="listaProfissoes">` integrado com `input list="listaProfissoes"` para autocompletar áreas de formação e competências.
+    * `type="range"` com elemento semântico `<output>` interativo em tempo real para cálculo de disponibilidade semanal de horas (2 a 40 horas/semana).
+    * `type="file"` estilizado para anexar currículo ou carta de apresentação nos formatos `.pdf`, `.doc` e `.docx` com feedback visual do arquivo selecionado.
   * **Máscaras de Entrada em Vanilla JS**: Formatação dinâmica e inteligente para CPF (`000.000.000-00`), CEP (`00000-000`) e Celular (`(00) 00000-0000`).
   * **Validação Algorítmica de CPF**: Cálculo dos dígitos verificadores matemáticos oficiais, rejeitando números inválidos e dígitos repetidos.
   * **Preenchimento Automático via API ViaCEP**: Busca assíncrona ao digitar o CEP, autopreenchendo rua, bairro, cidade e estado, focando automaticamente no campo número.
-  * **Feedback Visual e Acessibilidade**: Estados visuais com bordas verdes/vermelhas, mensagens de erro dinâmicas (`aria-live`) e notificações **Toast** animadas ao enviar.
+  * **Conformidade Técnica W3C & Acessibilidade**:
+    * Código 100% validado conforme as diretrizes do **W3C HTML5 Validator**.
+    * Associação estrita de todos os campos com `<label for="...">`, tags semânticas, `aria-required`, `aria-describedby` para leitores de tela e robôs de busca.
+    * Feedback visual e sonoro com bordas verdes/vermelhas, mensagens com `aria-live` e notificações **Toast** animadas ao submeter.
 
 ---
 

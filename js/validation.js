@@ -233,6 +233,27 @@ document.addEventListener('DOMContentLoaded', () => {
       volunteerForm.querySelectorAll('.is-valid, .is-invalid').forEach(el => {
         el.classList.remove('is-valid', 'is-invalid');
       });
+
+      const fileNameDisplay = document.getElementById('fileUploadName');
+      if (fileNameDisplay) {
+        fileNameDisplay.textContent = 'Clique para selecionar seu arquivo ou arraste até aqui';
+        fileNameDisplay.style.color = '';
+      }
     }, 1500);
   });
+
+  // Atualização dinâmica do nome do arquivo selecionado (HTML5 File Input)
+  const fileInput = document.getElementById('curriculo');
+  const fileNameDisplay = document.getElementById('fileUploadName');
+  if (fileInput && fileNameDisplay) {
+    fileInput.addEventListener('change', () => {
+      if (fileInput.files && fileInput.files.length > 0) {
+        fileNameDisplay.textContent = `✓ Arquivo anexado: ${fileInput.files[0].name}`;
+        fileNameDisplay.style.color = 'var(--primary)';
+      } else {
+        fileNameDisplay.textContent = 'Clique para selecionar seu arquivo ou arraste até aqui';
+        fileNameDisplay.style.color = '';
+      }
+    });
+  }
 });
