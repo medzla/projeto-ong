@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projetos Sociais | Instituto Esperança Viva</title>
+  <meta name="description" content="Conheça todas as iniciativas e projetos sociais do Instituto Esperança Viva. Educação, meio ambiente, tecnologia e desenvolvimento humano.">
+  
+  <!-- OpenGraph -->
+  <meta property="og:title" content="Projetos Sociais | Instituto Esperança Viva">
+  <meta property="og:description" content="Descubra nossos projetos nas áreas de educação, meio ambiente e assistência comunitária.">
+  <meta property="og:image" content="assets/images/project-educacao.jpg">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- =========================================================================
+       Header & Navegação Semântica
+       ========================================================================= -->
+  <header class="site-header" id="header">
+    <div class="container header-container">
+      <a href="index.html" class="logo" aria-label="Página Inicial do Instituto Esperança Viva">
+        <div class="logo-icon" aria-hidden="true">🌱</div>
+        <div>Esperança<span>Viva</span></div>
+      </a>
+
+      <nav class="main-nav" id="mainNav" aria-label="Navegação Principal">
+        <ul class="nav-list">
+          <li><a href="index.html" class="nav-link">Início</a></li>
+          <li><a href="index.html#sobre" class="nav-link">Sobre Nós</a></li>
+          <li><a href="projetos.html" class="nav-link active">Projetos Sociais</a></li>
+          <li><a href="index.html#impacto" class="nav-link">Impacto</a></li>
+          <li><a href="index.html#doar" class="nav-link">Como Ajudar</a></li>
+          <li><a href="cadastro.html" class="nav-link">Seja Voluntário</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" class="theme-toggle-btn" id="themeToggle" aria-label="Alternar tema claro e escuro">🌙</button>
+        <a href="cadastro.html" class="btn btn-primary btn-sm">Quero Ajudar</a>
+        <button type="button" class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menu de navegação" aria-expanded="false">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       Conteúdo Principal (Main)
+       ========================================================================= -->
+  <main id="mainContent">
+
+    <!-- BANNER DA PÁGINA DE PROJETOS -->
+    <section class="section" style="padding: 4rem 0 2.5rem 0; background-color: var(--bg-subtle); text-align: center;">
+      <div class="container" style="max-width: 780px;">
+        <span class="badge badge-primary">Ações em Campo</span>
+        <h1 class="section-title" style="margin-top: 0.75rem;">Projetos Sociais & Comunitários</h1>
+        <p class="section-subtitle">
+          Nossas frentes de atuação são planejadas em parceria com as lideranças locais, garantindo impacto real, sustentabilidade e autonomia para as comunidades.
+        </p>
+      </div>
+    </section>
+
+    <!-- GALERIA DE PROJETOS COM FILTROS -->
+    <section class="section">
+      <div class="container">
+        
+        <!-- Barra de Filtros por Categoria -->
+        <div class="projects-filter-bar" role="toolbar" aria-label="Filtro de categorias de projetos">
+          <button type="button" class="filter-btn active" data-filter="all">Todos os Projetos (6)</button>
+          <button type="button" class="filter-btn" data-filter="educacao">Educação & Infância</button>
+          <button type="button" class="filter-btn" data-filter="ambiente">Meio Ambiente & Clima</button>
+          <button type="button" class="filter-btn" data-filter="tecnologia">Inclusão Digital</button>
+          <button type="button" class="filter-btn" data-filter="comunidade">Apoio Comunitário</button>
+        </div>
+
+        <!-- Grade de Cards Semânticos de Projetos -->
+        <div class="projects-grid">
+          
+          <!-- Projeto 1: Educação -->
+          <article class="project-card" data-category="educacao">
+            <div class="project-thumb">
+              <span class="badge badge-success project-badge-status">Em Andamento</span>
+              <span class="project-category-tag">Educação Infantil</span>
+              <img src="assets/images/project-educacao.jpg" alt="Professora e crianças em biblioteca comunitária" loading="lazy">
+            </div>
+            <div class="project-body">
+              <h2 class="project-title">Ler é Sonhar: Bibliotecas Comunitárias</h2>
+              <p class="project-summary">
+                Instalação de salas de leitura lúdicas e realização de mediação pedagógica aos sábados, estimulando o amor pelos livros e alfabetização funcional em áreas periféricas.
+              </p>
+              
+              <div class="project-progress-box">
+                <div class="progress-labels">
+                  <span>Crianças Atendidas</span>
+                  <span><strong>78%</strong> (273 / 350)</span>
+                </div>
+                <div class="progress-bar-bg">
+                  <div class="progress-bar-fill" style="width: 78%;"></div>
+                </div>
+              </div>
+
+              <div class="project-footer">
+                <span style="font-size: 0.8rem; color: var(--text-muted);">📍 Zona Leste e Sul</span>
+                <a href="cadastro.html" class="btn btn-primary btn-sm">Seja Voluntário</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Projeto 2: Meio Ambiente -->
+          <article class="project-card" data-category="ambiente">
+            <div class="project-thumb">
+              <span class="badge badge-success project-badge-status">Em Andamento</span>
+              <span class="project-category-tag">Preservação Ambiental</span>
+              <img src="assets/images/project-meio-ambiente.jpg" alt="Equipe plantando mudas nativas em área reflorestada" loading="lazy">
+            </div>
+            <div class="project-body">
+              <h2 class="project-title">Raízes do Amanhã: Reflorestamento</h2>
+              <p class="project-summary">
+                Mapeamento e recuperação de nascentes urbanas com plantio de mudas nativas da Mata Atlântica e workshops de conscientização ecológica em escolas públicas.
+              </p>
+              
+              <div class="project-progress-box">
+                <div class="progress-labels">
+                  <span>Mudas Plantadas</span>
+                  <span><strong>91%</strong> (9.100 / 10.000)</span>
+                </div>
+                <div class="progress-bar-bg">
+                  <div class="progress-bar-fill" style="width: 91%;"></div>
+                </div>
+              </div>
+
+              <div class="project-footer">
+                <span style="font-size: 0.8rem; color: var(--text-muted);">📍 Bacia Hidrográfica</span>
+                <a href="cadastro.html" class="btn btn-primary btn-sm">Seja Voluntário</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Projeto 3: Tecnologia -->
+          <article class="project-card" data-category="tecnologia">
+            <div class="project-thumb">
+              <span class="badge badge-accent project-badge-status">Novas Vagas</span>
+              <span class="project-category-tag">Capacitação Jovem</span>
+              <img src="assets/images/project-tecnologia.jpg" alt="Jovens aprendendo desenvolvimento de software no laboratório tech" loading="lazy">
+            </div>
+            <div class="project-body">
+              <h2 class="project-title">Código que Liberta: Lab Tech Social</h2>
+              <p class="project-summary">
+                Laboratório gratuito de programação web, raciocínio lógico e mentoria profissional com voluntários da área de TI para jovens de baixa renda em transição de carreira.
+              </p>
+              
+              <div class="project-progress-box">
+                <div class="progress-labels">
+                  <span>Alunos Matriculados</span>
+                  <span><strong>65%</strong> (39 / 60)</span>
+                </div>
+                <div class="progress-bar-bg">
+                  <div class="progress-bar-fill" style="width: 65%;"></div>
+                </div>
+              </div>
+
+              <div class="project-footer">
+                <span style="font-size: 0.8rem; color: var(--text-muted);">📍 Hub Comunitário</span>
+                <a href="cadastro.html" class="btn btn-primary btn-sm">Seja Voluntário</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Projeto 4: Comunidade -->
+          <article class="project-card" data-category="comunidade">
+            <div class="project-thumb">
+              <span class="badge badge-success project-badge-status">Em Andamento</span>
+              <span class="project-category-tag">Segurança Alimentar</span>
+              <img src="assets/images/hero.jpg" alt="Colheita de horta comunitária agroecológica" loading="lazy">
+            </div>
+            <div class="project-body">
+              <h2 class="project-title">Hortas Urbanas e Nutrição Solidária</h2>
+              <p class="project-summary">
+                Cultivo sustentável de hortaliças orgânicas em terrenos ociosos da comunidade, gerando alimentos frescos para famílias atendidas e merenda escolar local.
+              </p>
+              
+              <div class="project-progress-box">
+                <div class="progress-labels">
+                  <span>Famílias Beneficiadas</span>
+                  <span><strong>84%</strong> (210 / 250)</span>
+                </div>
+                <div class="progress-bar-bg">
+                  <div class="progress-bar-fill" style="width: 84%;"></div>
+                </div>
+              </div>
+
+              <div class="project-footer">
+                <span style="font-size: 0.8rem; color: var(--text-muted);">📍 Bairros Periféricos</span>
+                <a href="cadastro.html" class="btn btn-primary btn-sm">Seja Voluntário</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Projeto 5: Educação & Artes -->
+          <article class="project-card" data-category="educacao">
+            <div class="project-thumb">
+              <span class="badge badge-success project-badge-status">Em Andamento</span>
+              <span class="project-category-tag">Arte & Cidadania</span>
+              <img src="assets/images/project-educacao.jpg" alt="Oficinas de música e teatro com crianças" loading="lazy">
+            </div>
+            <div class="project-body">
+              <h2 class="project-title">Ritmos da Terra: Dança e Teatro</h2>
+              <p class="project-summary">
+                Oficinas culturais no contraturno escolar promovendo expressão corporal, pertencimento identitário e preservação de manifestações artísticas populares.
+              </p>
+              
+              <div class="project-progress-box">
+                <div class="progress-labels">
+                  <span>Participantes</span>
+                  <span><strong>70%</strong> (105 / 150)</span>
+                </div>
+                <div class="progress-bar-bg">
+                  <div class="progress-bar-fill" style="width: 70%;"></div>
+                </div>
+              </div>
+
+              <div class="project-footer">
+                <span style="font-size: 0.8rem; color: var(--text-muted);">📍 Centro Cultural</span>
+                <a href="cadastro.html" class="btn btn-primary btn-sm">Seja Voluntário</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Projeto 6: Meio Ambiente -->
+          <article class="project-card" data-category="ambiente">
+            <div class="project-thumb">
+              <span class="badge badge-secondary project-badge-status">Expansão</span>
+              <span class="project-category-tag">Economia Circular</span>
+              <img src="assets/images/project-meio-ambiente.jpg" alt="Pontos de coleta e reciclagem comunitária" loading="lazy">
+            </div>
+            <div class="project-body">
+              <h2 class="project-title">Recicla Comunidade: Cooperativa Verde</h2>
+              <p class="project-summary">
+                Capacitação técnica para catadores de materiais recicláveis, fornecimento de equipamentos de segurança e formalização de cooperativas de reciclagem.
+              </p>
+              
+              <div class="project-progress-box">
+                <div class="progress-labels">
+                  <span>Toneladas Processadas</span>
+                  <span><strong>88%</strong> (176t / 200t)</span>
+                </div>
+                <div class="progress-bar-bg">
+                  <div class="progress-bar-fill" style="width: 88%;"></div>
+                </div>
+              </div>
+
+              <div class="project-footer">
+                <span style="font-size: 0.8rem; color: var(--text-muted);">📍 Cooperativa Central</span>
+                <a href="cadastro.html" class="btn btn-primary btn-sm">Seja Voluntário</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- BANNER FINAL INCENTIVO AO VOLUNTARIADO -->
+    <section class="section" style="background-color: var(--bg-surface); border-top: 1px solid var(--border);">
+      <div class="container" style="text-align: center; max-width: 650px;">
+        <span class="badge badge-secondary">Engaje-se</span>
+        <h2 class="section-title" style="margin-top: 0.5rem;">Deseja Coordenar ou Apoiar um Projeto?</h2>
+        <p class="section-subtitle" style="margin-bottom: 2rem;">
+          Estamos sempre em busca de educadores, agrônomos, desenvolvedores, psicólogos e pessoas dispostas a compartilhar seu tempo.
+        </p>
+        <a href="cadastro.html" class="btn btn-primary btn-lg">Preencher Formulário de Cadastro</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================================================================
+       Rodapé Semântico
+       ========================================================================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <div class="logo-icon" aria-hidden="true">🌱</div>
+            <div>Esperança<span>Viva</span></div>
+          </a>
+          <p>
+            Organização Não Governamental comprometida com a justiça social, direitos humanos e preservação ambiental desde 2014.
+          </p>
+          <div class="social-links">
+            <a href="#" class="social-link" aria-label="Instagram">📷</a>
+            <a href="#" class="social-link" aria-label="LinkedIn">💼</a>
+            <a href="#" class="social-link" aria-label="Facebook">📘</a>
+            <a href="#" class="social-link" aria-label="YouTube">▶️</a>
+          </div>
+        </div>
+
+        <div class="footer-column">
+          <h4>Navegação</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Início</a></li>
+            <li><a href="index.html#sobre">Quem Somos</a></li>
+            <li><a href="projetos.html">Projetos Sociais</a></li>
+            <li><a href="cadastro.html">Cadastro de Voluntários</a></li>
+            <li><a href="index.html#doar">Fazer Doação</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Transparência</h4>
+          <ul class="footer-links">
+            <li><a href="#">Estatuto Social</a></li>
+            <li><a href="#">Relatório Anual 2025</a></li>
+            <li><a href="#">Prestação de Contas</a></li>
+            <li><a href="#">Política de Privacidade</a></li>
+            <li><a href="#">Código de Conduta</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column footer-contact">
+          <h4>Sede do Instituto</h4>
+          <ul>
+            <li>📍 Av. das Nações Solidárias, 1250 - Centro Comunitário</li>
+            <li>📞 (11) 3456-7890 / WhatsApp: (11) 98765-4321</li>
+            <li>✉️ contato@institutoesperancaviva.org.br</li>
+            <li>🕒 Seg a Sex: 08h às 18h | Sáb: 09h às 14h</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Instituto Esperança Viva - CNPJ: 12.345.678/0001-90. Todos os direitos reservados.</p>
+        <p>Projeto Desenvolvido para o Terceiro Setor • Faculdade</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script src="js/projects.js"></script>
+</body>
+</html>
